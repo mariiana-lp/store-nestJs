@@ -3,16 +3,16 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 @Injectable()
 export class BrandService {
     private counterId = 1;
-    private brands: any  = [{
+    private brands: any = [{
         id: 1,
-        name: 'brand 1',
-        desription:' brand 1 description'
+        name: 'Brand 1',
+        image: 'https://i.imgur.com/U4iGx1j.jpeg',
     }];
 
     findAll() {
-        if(this.brands.length < 0){
+        if (this.brands.length < 0) {
             throw new NotFoundException('brands not found');
-        } 
+        }
         return this.brands;
     }
 

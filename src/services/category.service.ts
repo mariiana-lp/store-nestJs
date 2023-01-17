@@ -5,8 +5,7 @@ export class CategoryService {
     private counterId = 1;
     private categories: any  = [{
         id: 1,
-        name: 'category 1',
-        desription:' category 1 description'
+        name: 'Category 1',
     }];
 
     findAll() {

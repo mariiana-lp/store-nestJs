@@ -1,41 +1,33 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { OrderService } from '../services/order.service';
 
 @Controller('orders')
 export class OrdersController {
+
+    constructor(private orderService:OrderService){}
+
     @Get()
     getOrders() {
-        return {
-            message: 'Orders'
-        }
+        return this.orderService.findAll();
     }
 
     @Get(':id')
-    getOrder(@Param('id') id: string) {
-        return {
-            message: `order ${id}`
-        }
+    getOrder(@Param('id') id: number) {
+        return this.orderService.findOne(id);
     }
 
     @Post()
     create(@Body() payload: any) {
-        return {
-            message: 'action create',
-            payload
-        }
+        return this.orderService.create(payload);
     }
 
     @Put(':id')
-    update(@Param('id') id: string, @Body() payload: any) {
-        return {
-            id,
-            payload
-        }
+    update(@Param('id') id: number, @Body() payload: any) {
+        return this.orderService.update(id, payload);
     }
 
     @Delete(':id')
-    delete(@Param('id') id: string) {
-        return {
-            message: `action delete id ${id}`
-        }
+    delete(@Param('id') id: number) {
+        return this.orderService.remove(id);
     }
 }
